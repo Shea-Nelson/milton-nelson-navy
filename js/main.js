@@ -42,7 +42,12 @@
   var index = 0;
 
   function visibleOpens() {
-    return Array.prototype.slice.call(document.querySelectorAll(".print-open")).filter(function (button) {
+    var root = document;
+    if (opener) {
+      var album = opener.closest(".album");
+      if (album) root = album;
+    }
+    return Array.prototype.slice.call(root.querySelectorAll(".print-open")).filter(function (button) {
       var figure = button.closest(".print");
       return figure && !figure.hidden;
     });

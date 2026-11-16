@@ -290,6 +290,29 @@ main { display: block; }
 .prose { max-width: 44rem; }
 .prose p { margin: 0.85rem 0; }
 
+.story-print {
+  margin: 1.35rem 0 1.85rem;
+  max-width: 58rem;
+  background: var(--card);
+  border: 1px solid var(--line);
+  padding: 0.55rem 0.55rem 0.85rem;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.7) inset;
+}
+
+.story-print img {
+  width: 100%;
+  height: auto;
+  display: block;
+  background: #cbb89a;
+}
+
+.story-print figcaption {
+  margin: 0.7rem 0.4rem 0.15rem;
+  font-size: 0.95rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
 .section-head { max-width: 46rem; margin-bottom: 1.6rem; }
 
 .facts {

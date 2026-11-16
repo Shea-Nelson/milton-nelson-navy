@@ -6,6 +6,6 @@ The site is plain HTML, CSS, and JavaScript. Open `index.html` in a browser, or 
 
 https://shea-nelson.github.io/milton-nelson-navy/
 
-Photographs live in `images/` with a caption and a source link on the page. None of them is a portrait of Milton. The Family memories section is oral history from his son Kenny Nelson, labeled as memory rather than as a record.
+Photographs live in `images/` with a caption and a source link on the page. None of them is a portrait of Milton. The Family photographs section includes the family’s own 1944 print of USS Noble, stamped with his name and rate. The Family memories section is oral history from his son Kenny Nelson, labeled as memory rather than as a record.
 
 Compiled by the Nelson family, 2026.
