@@ -19,12 +19,15 @@
   <meta name="twitter:description" content="A family memorial for Milton Nelson, coxswain, USS Noble (APA-218), World War II.">
   <meta name="twitter:image" content="https://shea-nelson.github.io/milton-nelson-navy/images/og-preview.jpg">
   <meta name="theme-color" content="#10243f">
+  <meta name="color-scheme" content="light">
   <link rel="icon" href="favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+  <link rel="preconnect" href="https://tile.openstreetmap.org">
+  <link rel="preload" href="vendor/leaflet/leaflet.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="vendor/leaflet/leaflet.css"></noscript>
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
+  <a class="skip" href="#content">Skip to content</a>
   <header class="site-header">
     <a class="brand" href="#top">
       <strong>Milton Nelson</strong>
@@ -51,15 +54,19 @@
     <article id="top" class="hero">
       <div class="hero-copy">
         <p class="eyebrow">A family memorial</p>
-        <h1>Milton Nelson</h1>
-        <hr class="rule">
+        <h1 id="content" tabindex="-1">Milton Nelson</h1>
+        <hr class="rule" aria-hidden="true">
         <p class="role">Coxswain, United States Navy</p>
         <p class="ship-line">USS Noble (APA-218) · World War II</p>
         <p class="dates">November 8, 1922 – December 23, 1997</p>
         <p class="quiet">Plank owner of an attack transport. He went to Okinawa at Easter 1945, came home to Panama City, and is buried beside his wife, <a href="https://shea-nelson.github.io/dorothy-nelson/">Dorothy</a>. No photograph of him has been found online. This page does not pretend otherwise.</p>
       </div>
       <figure class="hero-photo">
-        <img src="images/noble-san-diego.jpg" width="1920" height="1450" alt="USS Noble, hull number 218, underway on calm water with a low shoreline behind her.">
+        <picture>
+          <source type="image/avif" srcset="images/sized/noble-san-diego-960.avif 960w, images/sized/noble-san-diego-1600.avif 1600w, images/sized/noble-san-diego-1920.avif 1920w" sizes="(max-width: 860px) 100vw, 50vw">
+          <source type="image/webp" srcset="images/sized/noble-san-diego-960.webp 960w, images/sized/noble-san-diego-1600.webp 1600w, images/sized/noble-san-diego-1920.webp 1920w" sizes="(max-width: 860px) 100vw, 50vw">
+          <img src="images/noble-san-diego.jpg" width="1920" height="1450" alt="USS Noble, hull number 218, underway on calm water with a low shoreline behind her." loading="eager" fetchpriority="high">
+        </picture>
         <figcaption>
           USS Noble off San Diego in the later 1940s or early 1950s — after Milton had come home. The clearest portrait of his ship that could be found.
           U.S. Navy photograph NH 97121, public domain.
@@ -73,7 +80,11 @@
         <p class="kicker">01 — His story</p>
         <h2>A Florida sailor, and a ship that was new</h2>
         <figure class="story-print">
-          <img src="images/family-noble-print-1944.jpg" width="1600" height="1200" alt="The Nelson family’s framed 1944 line-art print of the attack transport USS Noble steaming through rough water under a cloudy sky, with hull number 218 on the bow. Stamped at the top: MILTON NELSON, COX. USS NOBLE. A caption on the water reads TOKYO SPECIAL ~ WORLD WAR II. The copyright line at the lower left reads Copyright 1944, Will Creasy. All rights reserved.">
+          <picture>
+            <source type="image/avif" srcset="images/sized/family-noble-print-1944-960.avif 960w, images/sized/family-noble-print-1944-1600.avif 1600w" sizes="(min-width: 860px) 58rem, calc(100vw - 2rem)">
+            <source type="image/webp" srcset="images/sized/family-noble-print-1944-960.webp 960w" sizes="(min-width: 860px) 58rem, calc(100vw - 2rem)">
+            <img src="images/family-noble-print-1944.jpg" width="1600" height="1200" alt="The Nelson family’s framed 1944 line-art print of the attack transport USS Noble steaming through rough water under a cloudy sky, with hull number 218 on the bow. Stamped at the top: MILTON NELSON, COX. USS NOBLE. A caption on the water reads TOKYO SPECIAL ~ WORLD WAR II. The copyright line at the lower left reads Copyright 1944, Will Creasy. All rights reserved." loading="lazy" decoding="async">
+          </picture>
           <figcaption>
             The Nelson family’s own print of the USS Noble, stamped “Milton Nelson, Cox., USS Noble.” “Tokyo Special – World War II,” © 1944 Will Creasy. Family collection.
           </figcaption>
@@ -87,7 +98,7 @@
           <p>He later made coxswain. In the wartime Navy that was a petty officer third class, pay grade E-4 — the title then used for what was afterward called boatswain’s mate third class. The date he made the rate is not known. It is not known whether he was already a coxswain when Noble landed the 6th Marine Division at Okinawa. The bronze marker on his grave uses the rate he finished with: COX, U.S. Navy.</p>
           <p>The family has a framed 1944 print of the ship, stamped at the top “MILTON NELSON, COX. USS NOBLE.” That is the print shown above, and it is kept again with the <a href="#family-photos">family photographs</a>. The artwork is dated 1944; the stamp uses the rate on his grave marker, COX. This page does not treat the stamp as a date for when he made coxswain.</p>
         </div>
-        <ul class="facts">
+        <ul class="facts" role="list">
           <li><span class="label">Born</span><strong>November 8, 1922, Florida</strong></li>
           <li><span class="label">Died</span><strong>December 23, 1997, Panama City, Florida, age 75</strong></li>
           <li><span class="label">Buried</span><strong>Evergreen Memorial Gardens, beside Dorothy</strong></li>
@@ -106,7 +117,7 @@
       </div>
     </section>
 
-    <section id="voyage" class="section" style="background: rgba(255,255,255,0.35);">
+    <section id="voyage" class="section band">
       <div class="wrap">
         <p class="kicker">02 — Voyage of the USS Noble</p>
         <h2>From a new ship to Seattle</h2>
@@ -117,7 +128,7 @@
         </div>
         <div class="voyage-layout">
           <div>
-            <ol class="voyage-list">
+            <ol class="voyage-list" role="list">
               <li class="stop" id="stop-richmond" data-num="1" data-lat="37.910" data-lng="-122.361" data-zoom="12" data-summary="Permanente Metals yard, Richmond, where Noble was built. Milton is first on her books at commissioning, not in a yard record.">
                 <button type="button" class="stop-btn"><span class="num">1</span><span class="when">July–November 1944</span><span class="where">Richmond, California</span></button>
                 <div class="stop-body"><p>Noble was laid down July 20, 1944, as Maritime Commission hull 566, by Permanente Metals Corporation at Richmond — a Kaiser yard — and launched October 18. She was a modified Victory ship, completed by the Kaiser Shipyard there. DANFS records the ship. It does not place Milton at the yard. He is first named, so far as this page knows, on commissioning day.</p></div>
@@ -229,7 +240,7 @@
           <p class="callout"><span class="tag">Not known</span> Nothing here says he steered a particular boat at Okinawa. He was a seaman first class when the ship was commissioned. He was a coxswain by the time the Navy was done with him. The months in between are the gap a personnel file could close.</p>
         </div>
         <div>
-          <ul class="crew">
+          <ul class="crew" role="list">
             <li><span class="who">Coxswain</span><span class="job">In charge of the boat</span></li>
             <li><span class="who">Engineer</span><span class="job">The motor, and how to keep it running</span></li>
             <li><span class="who">Deckhand</span><span class="job">Seamanship, ramp, and beach work</span></li>
@@ -237,7 +248,11 @@
           </ul>
           <figure class="print" data-fit="contain">
             <button type="button" class="print-open">
-              <img src="images/coxswain-badge.jpg" width="900" height="1066" alt="A dark cloth rating badge with an eagle, chevrons, and a ship’s wheel, photographed in a museum case.">
+              <picture>
+                <source type="image/avif" srcset="images/sized/coxswain-badge-900.avif 900w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/coxswain-badge-900.webp 900w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/coxswain-badge.jpg" width="900" height="1066" alt="A dark cloth rating badge with an eagle, chevrons, and a ship’s wheel, photographed in a museum case." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">A 1943 U.S. Navy coxswain rating badge, in the National Museum of American History. The wheel under the eagle is the mark of the rate. This is not Milton’s badge.</p>
@@ -248,13 +263,13 @@
       </div>
     </section>
 
-    <section id="gallery" class="section" style="background: rgba(255,255,255,0.35);">
+    <section id="gallery" class="section band">
       <div class="wrap">
         <p class="kicker">05 — Photographs</p>
         <h2>The record around him</h2>
         <p class="lede">Thirty-seven photographs are in this album, and the coxswain’s badge is with the section above: thirty-eight in all, saved in this site rather than pulled from someone else’s server. Each one is captioned. None of them is Milton. Where a picture was taken after he had left the ship, or shows another ship’s boat, the caption says that. The family memory is told in words only.</p>
         <p>Two pictures are shared under Creative Commons. The rest are public-domain photographs of the United States government, or a museum object released CC0. NavSource was used as a finding aid. Contributor photographs from that site were not copied. The family’s own print of Noble, with Milton’s name stamped on it, is with the <a href="#family-photos">family photographs</a>.</p>
-        <div class="filters" role="toolbar" aria-label="Filter photographs">
+        <div class="filters" role="group" aria-label="Filter photographs">
           <button type="button" data-filter="all" aria-pressed="true">All</button>
           <button type="button" data-filter="ship" aria-pressed="false">The ship</button>
           <button type="button" data-filter="boats" aria-pressed="false">Boats and the rate</button>
@@ -264,7 +279,11 @@
         <div class="album" id="album">
           <figure class="print" data-tags="ship places">
             <button type="button" class="print-open">
-              <img src="images/permanente-yards-1944.jpg" width="1920" height="1542" alt="Aerial photograph of long shipyard ways and hulls along a waterfront." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/permanente-yards-1944-960.avif 960w, images/sized/permanente-yards-1944-1600.avif 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/permanente-yards-1944-960.webp 960w, images/sized/permanente-yards-1944-1600.webp 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/permanente-yards-1944.jpg" width="1920" height="1542" alt="Aerial photograph of long shipyard ways and hulls along a waterfront." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">The Permanente Metals yards at Richmond, California, on December 11, 1944, with Yard No. 1 in the background. Noble, hull 566, was built here and had been commissioned on November 27. Milton is not named in any yard record this page has.</p>
@@ -273,7 +292,11 @@
           </figure>
           <figure class="print" data-tags="ship" data-fit="contain">
             <button type="button" class="print-open">
-              <img src="images/sibley-richmond-yard.jpg" width="1477" height="1959" alt="A large transport ship tied up at a pier, seen from the bow, with yard buildings behind her." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/sibley-richmond-yard-960.avif 960w, images/sized/sibley-richmond-yard-1477.avif 1477w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/sibley-richmond-yard-960.webp 960w, images/sized/sibley-richmond-yard-1477.webp 1477w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/sibley-richmond-yard.jpg" width="1477" height="1959" alt="A large transport ship tied up at a pier, seen from the bow, with yard buildings behind her." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">USS Sibley (APA-206), a Haskell-class sister ship, fitting out at Permanente Metals Yard No. 2, Richmond, on September 26, 1944. She is not Noble. She is the closest photograph found of that yard in the weeks before Noble’s commissioning.</p>
@@ -282,7 +305,11 @@
           </figure>
           <figure class="print" data-tags="places" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/treasure-island-1944.jpg" width="1920" height="1537" alt="Aerial view of Treasure Island in San Francisco Bay, with a flying boat on the water." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/treasure-island-1944-960.avif 960w, images/sized/treasure-island-1944-1600.avif 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/treasure-island-1944-960.webp 960w, images/sized/treasure-island-1944-1600.webp 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/treasure-island-1944.jpg" width="1920" height="1537" alt="Aerial view of Treasure Island in San Francisco Bay, with a flying boat on the water." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">Treasure Island, San Francisco, March 30, 1944. U.S. Navy photograph 80-G-227011. The bay where Noble would be commissioned that November. Nothing places Milton in the city on this day.</p>
@@ -291,7 +318,11 @@
           </figure>
           <figure class="print" data-tags="ship">
             <button type="button" class="print-open">
-              <img src="images/noble-new-york-1946.jpg" width="739" height="553" alt="USS Noble at anchor, a low gray transport with a smaller yard craft alongside." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/noble-new-york-1946-739.avif 739w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/noble-new-york-1946-739.webp 739w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/noble-new-york-1946.jpg" width="739" height="553" alt="USS Noble at anchor, a low gray transport with a smaller yard craft alongside." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">USS Noble (APA-218) anchored off New York on May 25, 1946, with the water barge YW-107 alongside. This is the earliest photograph of the ship that could be found. Milton had been discharged the previous November.</p>
@@ -300,7 +331,11 @@
           </figure>
           <figure class="print" data-tags="ship" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/noble-san-diego.jpg" width="1920" height="1450" alt="USS Noble underway, hull number 218 visible on the bow, with landing-craft davits along her side." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/noble-san-diego-960.avif 960w, images/sized/noble-san-diego-1600.avif 1600w, images/sized/noble-san-diego-1920.avif 1920w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/noble-san-diego-960.webp 960w, images/sized/noble-san-diego-1600.webp 1600w, images/sized/noble-san-diego-1920.webp 1920w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/noble-san-diego.jpg" width="1920" height="1450" alt="USS Noble underway, hull number 218 visible on the bow, with landing-craft davits along her side." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">USS Noble off San Diego in the later 1940s or early 1950s. Hull number 218 is on the bow. She still carries the davits for her landing craft. Milton was already home in Florida.</p>
@@ -309,7 +344,11 @@
           </figure>
           <figure class="print" data-tags="ship" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/haskell-class-underway.jpg" width="1920" height="1412" alt="An attack transport underway, seen from off the bow, with boats and booms along the side." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/haskell-class-underway-960.avif 960w, images/sized/haskell-class-underway-1600.avif 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/haskell-class-underway-960.webp 960w, images/sized/haskell-class-underway-1600.webp 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/haskell-class-underway.jpg" width="1920" height="1412" alt="An attack transport underway, seen from off the bow, with boats and booms along the side." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">An unidentified Haskell-class attack transport underway in 1944 or 1945, shortly after completion. The Navy did not name her. She shows the class Noble belonged to, in the years of Milton’s cruise. She is not identified as Noble.</p>
@@ -318,7 +357,11 @@
           </figure>
           <figure class="print" data-tags="ship" data-fit="contain">
             <button type="button" class="print-open">
-              <img src="images/haskell-class-model.jpg" width="1920" height="1451" alt="A pale ship model of an attack transport, photographed against a plain background." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/haskell-class-model-960.avif 960w, images/sized/haskell-class-model-1600.avif 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/haskell-class-model-960.webp 960w, images/sized/haskell-class-model-1600.webp 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/haskell-class-model.jpg" width="1920" height="1451" alt="A pale ship model of an attack transport, photographed against a plain background." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">A Navy model of a Haskell-class attack transport, about 1944. Bureau of Ships photograph 19-NN-APA-117. A way to see the whole ship, including the boat stations, when no wartime broadside of Noble herself has turned up.</p>
@@ -327,7 +370,11 @@
           </figure>
           <figure class="print" data-tags="ship places">
             <button type="button" class="print-open">
-              <img src="images/san-pedro-attack-transport.jpg" width="775" height="590" alt="An attack transport at anchor, seen in profile against a low shore." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/san-pedro-attack-transport-775.avif 775w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/san-pedro-attack-transport-775.webp 775w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/san-pedro-attack-transport.jpg" width="775" height="590" alt="An attack transport at anchor, seen in profile against a low shore." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">USS Cambria (APA-36), another attack transport, at anchor off San Pedro on August 19, 1945. Photographed by Lt. Anthony Mario Marzolla, U.S. Coast Guard. Noble’s shakedown off San Pedro was earlier in 1945. This is not Noble.</p>
@@ -336,7 +383,11 @@
           </figure>
           <figure class="print" data-tags="boats">
             <button type="button" class="print-open">
-              <img src="images/lcvp-cottle-1945.jpg" width="914" height="671" alt="A landing craft with a full load of troops, ramp area forward, moving past a larger landing craft." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/lcvp-cottle-1945-914.avif 914w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/lcvp-cottle-1945-914.webp 914w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/lcvp-cottle-1945.jpg" width="914" height="671" alt="A landing craft with a full load of troops, ramp area forward, moving past a larger landing craft." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">An LCVP — a Higgins boat — from USS Cottle (APA-147), a Haskell-class sister ship, landing troops somewhere in the Pacific in 1945. A larger landing craft is at the right. This is the sort of boat a Noble coxswain had charge of. It is not Noble’s boat, and the coxswain at the stern is not Milton.</p>
@@ -345,7 +396,7 @@
           </figure>
           <figure class="print" data-tags="boats places">
             <button type="button" class="print-open">
-              <img src="images/darke-landing-craft-okinawa.jpg" width="800" height="619" alt="A small landing craft alongside a beach or ship, with men aboard, in bright daylight." loading="lazy">
+              <img src="images/darke-landing-craft-okinawa.jpg" width="800" height="619" alt="A small landing craft alongside a beach or ship, with men aboard, in bright daylight." loading="lazy" decoding="async">
             </button>
             <figcaption>
               <p class="cap">A landing craft from USS Darke (APA-159) at Okinawa, about April 9–14, 1945, possibly carrying reinforcements. The Navy’s caption calls her LCP(R) 18, a ramp boat of a slightly different type from the LCVP, even though the file name says LCVP. Not Noble’s boat.</p>
@@ -354,7 +405,11 @@
           </figure>
           <figure class="print" data-tags="boats places" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/pearl-harbor-lcvps-1945.jpg" width="1920" height="1454" alt="Several open landing craft leaving a pier, each with sailors seated in the well." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/pearl-harbor-lcvps-1945-960.avif 960w, images/sized/pearl-harbor-lcvps-1945-1600.avif 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/pearl-harbor-lcvps-1945-960.webp 960w, images/sized/pearl-harbor-lcvps-1945-1600.webp 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/pearl-harbor-lcvps-1945.jpg" width="1920" height="1454" alt="Several open landing craft leaving a pier, each with sailors seated in the well." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">LCVPs from attack transports leaving the Pearl Harbor Naval Shipyard with liberty parties, July 1945. The boats are from USS Hyde, USS Colusa, and USS Effingham. Lt. Paul Dorsey, U.S. Navy, 80-G-474987. Noble had passed through Pearl that spring. These are other ships, the next month.</p>
@@ -363,7 +418,11 @@
           </figure>
           <figure class="print" data-tags="people places">
             <button type="button" class="print-open">
-              <img src="images/mogmog-sailors-1944.jpg" width="1920" height="1920" alt="Enlisted sailors in dungarees sitting and standing on the sand of a small island." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/mogmog-sailors-1944-960.avif 960w, images/sized/mogmog-sailors-1944-1600.avif 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/mogmog-sailors-1944-960.webp 960w, images/sized/mogmog-sailors-1944-1600.webp 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/mogmog-sailors-1944.jpg" width="1920" height="1920" alt="Enlisted sailors in dungarees sitting and standing on the sand of a small island." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">Enlisted men on liberty at Mogmog Island, in Ulithi Atoll, November 1944. Charles Fenno Jacobs, National Archives 520730. They are not Noble’s crew. The ship was only just being commissioned. The picture is here for the anchorage she later steamed through, and for the look of wartime sailors.</p>
@@ -372,7 +431,11 @@
           </figure>
           <figure class="print" data-tags="people" data-fit="contain">
             <button type="button" class="print-open">
-              <img src="images/sixth-marines-pacific-1945.jpg" width="1500" height="2004" alt="Four Marines in utility uniforms, one of them lighting cigarettes for the others." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/sixth-marines-pacific-1945-960.avif 960w, images/sized/sixth-marines-pacific-1945-1500.avif 1500w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/sixth-marines-pacific-1945-960.webp 960w, images/sized/sixth-marines-pacific-1945-1500.webp 1500w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/sixth-marines-pacific-1945.jpg" width="1500" height="2004" alt="Four Marines in utility uniforms, one of them lighting cigarettes for the others." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">February 6, 1945. Private James F. Hartley of the 6th Marine Division, photographed by Private First Class Gregorka “somewhere in the South Pacific.” National Museum of the U.S. Navy, 127-GW-902-111833. This is the division Noble embarked at Guadalcanal. The caption does not name the island. These men are Marines, not Milton’s boat crew.</p>
@@ -381,7 +444,11 @@
           </figure>
           <figure class="print" data-tags="places">
             <button type="button" class="print-open">
-              <img src="images/guadalcanal-lst-1945.jpg" width="740" height="435" alt="A tank landing ship close to a tropical beach, with palms behind the shore." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/guadalcanal-lst-1945-740.avif 740w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/guadalcanal-lst-1945-740.webp 740w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/guadalcanal-lst-1945.jpg" width="740" height="435" alt="A tank landing ship close to a tropical beach, with palms behind the shore." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">USS LST-1110 at West Kukum Beach, Guadalcanal, August 18, 1945. U.S. Navy NH 97212-KN. The island where Noble had embarked the 6th Marine Division earlier that year. This photograph is months after she sailed on.</p>
@@ -390,7 +457,11 @@
           </figure>
           <figure class="print" data-tags="places">
             <button type="button" class="print-open">
-              <img src="images/lunga-cemetery.jpg" width="1836" height="1420" alt="Rows of white grave markers in a leveled cemetery, with a low sign in the foreground." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/lunga-cemetery-960.avif 960w, images/sized/lunga-cemetery-1600.avif 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/lunga-cemetery-960.webp 960w, images/sized/lunga-cemetery-1600.webp 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/lunga-cemetery.jpg" width="1836" height="1420" alt="Rows of white grave markers in a leveled cemetery, with a low sign in the foreground." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">The cemetery at Lunga Point, Guadalcanal, in a Marine Corps photograph kept by the National Museum of the U.S. Navy, 127-GW-893-128557. It holds men who died in the 1942–43 fighting. Noble’s 1945 call was to embark troops, not a scene this picture claims to show.</p>
@@ -399,7 +470,11 @@
           </figure>
           <figure class="print" data-tags="places" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/ulithi-carriers-1945.jpg" width="1920" height="1436" alt="Two aircraft carriers at anchor among many warships in a wide lagoon." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/ulithi-carriers-1945-960.avif 960w, images/sized/ulithi-carriers-1945-1600.avif 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/ulithi-carriers-1945-960.webp 960w, images/sized/ulithi-carriers-1945-1600.webp 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/ulithi-carriers-1945.jpg" width="1920" height="1436" alt="Two aircraft carriers at anchor among many warships in a wide lagoon." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">USS Hancock and USS Wasp at Ulithi, about the middle of March 1945, photographed from the battleship West Virginia. U.S. Navy 80-G-K-3814. The fleet anchorage Noble passed through on the way to Okinawa. Noble is not one of these ships.</p>
@@ -408,7 +483,11 @@
           </figure>
           <figure class="print" data-tags="places">
             <button type="button" class="print-open">
-              <img src="images/ulithi-anchorage-1945.jpg" width="631" height="499" alt="A pale beach with small craft and the dark line of an anchorage beyond." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/ulithi-anchorage-1945-631.avif 631w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/ulithi-anchorage-1945-631.webp 631w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/ulithi-anchorage-1945.jpg" width="631" height="499" alt="A pale beach with small craft and the dark line of an anchorage beyond." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">The south beach of Sorlen Island, looking into the north anchorage of Ulithi, 1945. A U.S. Navy photograph. Another view of the lagoon, not of Noble.</p>
@@ -417,7 +496,11 @@
           </figure>
           <figure class="print" data-tags="places" data-fit="contain">
             <button type="button" class="print-open">
-              <img src="images/okinawa-beaches-map.jpg" width="1200" height="1712" alt="A printed map of Okinawa’s western beaches, labeled in bands of color." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/okinawa-beaches-map-960.avif 960w, images/sized/okinawa-beaches-map-1200.avif 1200w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/okinawa-beaches-map-960.webp 960w, images/sized/okinawa-beaches-map-1200.webp 1200w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/okinawa-beaches-map.jpg" width="1200" height="1712" alt="A printed map of Okinawa’s western beaches, labeled in bands of color." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">The Hagushi landing beaches on April 1, 1945 — Green, Red, Blue, Yellow, and the rest — from the Marine Corps history <cite>Okinawa: Victory in the Pacific</cite>, by Major Chas. S. Nichols Jr. and Henry I. Shaw Jr. Noble’s anchorage is not marked more finely than “Okinawa.”</p>
@@ -426,7 +509,11 @@
           </figure>
           <figure class="print" data-tags="places people boats" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/okinawa-6th-marines-red-beach.jpg" width="640" height="298" alt="A line of armored amphibious tractors crossing the surf toward a beach." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/okinawa-6th-marines-red-beach-640.avif 640w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/okinawa-6th-marines-red-beach-640.webp 640w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/okinawa-6th-marines-red-beach.jpg" width="640" height="298" alt="A line of armored amphibious tractors crossing the surf toward a beach." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">Armored amphibious tractors of the 1st Armored Amphibian Battalion carry the assault wave of the 4th Marines, 6th Marine Division, onto Red Beach at Okinawa. U.S. Marine Corps photograph. The division Noble brought from Guadalcanal. This wave went in by amtrac. It is not a claim that Milton’s boat landed these men.</p>
@@ -435,7 +522,11 @@
           </figure>
           <figure class="print" data-tags="boats places" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/okinawa-bishagawa-boats.jpg" width="1920" height="1505" alt="Landing craft crowded at a river mouth, with men and supplies moving onto the bank." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/okinawa-bishagawa-boats-960.avif 960w, images/sized/okinawa-bishagawa-boats-1600.avif 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/okinawa-bishagawa-boats-960.webp 960w, images/sized/okinawa-bishagawa-boats-1600.webp 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/okinawa-bishagawa-boats.jpg" width="1920" height="1505" alt="Landing craft crowded at a river mouth, with men and supplies moving onto the bank." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">LCMs and LCVPs unloading at the mouth of the Bishagawa River on Okinawa, April 9, 1945. U.S. Army Signal Corps SC 207918, National Archives. A few days after Noble’s five days of unloading. The boats are not identified as hers.</p>
@@ -444,7 +535,11 @@
           </figure>
           <figure class="print" data-tags="people places" data-fit="contain">
             <button type="button" class="print-open">
-              <img src="images/sixth-marines-okinawa.jpg" width="1920" height="2061" alt="Marines moving across open ground on Okinawa, seen from behind and to the side." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/sixth-marines-okinawa-960.avif 960w, images/sized/sixth-marines-okinawa-1600.avif 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/sixth-marines-okinawa-960.webp 960w, images/sized/sixth-marines-okinawa-1600.webp 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/sixth-marines-okinawa.jpg" width="1920" height="2061" alt="Marines moving across open ground on Okinawa, seen from behind and to the side." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">Men of the 6th Marine Division on Okinawa. The Marine Corps History Division describes the photograph as post-conflict, from the division’s Okinawa collection. Official U.S. Marine Corps photograph. Later in the battle than Noble’s five days at the beach.</p>
@@ -453,7 +548,11 @@
           </figure>
           <figure class="print" data-tags="places" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/okinawa-kamikaze-lst.jpg" width="1920" height="1547" alt="Smoke rising from a landing ship while small boats gather around her." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/okinawa-kamikaze-lst-960.avif 960w, images/sized/okinawa-kamikaze-lst-1600.avif 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/okinawa-kamikaze-lst-960.webp 960w, images/sized/okinawa-kamikaze-lst-1600.webp 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/okinawa-kamikaze-lst.jpg" width="1920" height="1547" alt="Smoke rising from a landing ship while small boats gather around her." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">April 3, 1945, while Noble was still off Okinawa unloading. Small boats gather around a landing ship hit by a suicide plane. U.S. Army Signal Corps SC 207299. The cruise book says Noble took no damage in those five days. This is another ship. The original wartime caption used a slur; it is not repeated here.</p>
@@ -462,7 +561,11 @@
           </figure>
           <figure class="print" data-tags="ship places">
             <button type="button" class="print-open">
-              <img src="images/hinsdale-kamikaze-damage.jpg" width="520" height="387" alt="A jagged hole in the side of an attack transport, with twisted plating around it." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/hinsdale-kamikaze-damage-520.avif 520w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/hinsdale-kamikaze-damage-520.webp 520w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/hinsdale-kamikaze-damage.jpg" width="520" height="387" alt="A jagged hole in the side of an attack transport, with twisted plating around it." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">USS Hinsdale (APA-120), another attack transport, holed off Okinawa on April 1, 1945, the morning of the landing. The opening is on the port side. U.S. Navy photograph. Noble was in the same assault and, by the cruise book, was not hit. The picture is here so “constant air raids” and “no damage” can be read together.</p>
@@ -471,7 +574,11 @@
           </figure>
           <figure class="print" data-tags="places" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/kamikaze-near-bataan.jpg" width="1920" height="1424" alt="A spray of water beside an aircraft carrier as a plane strikes the sea near her stern." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/kamikaze-near-bataan-960.avif 960w, images/sized/kamikaze-near-bataan-1600.avif 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/kamikaze-near-bataan-960.webp 960w, images/sized/kamikaze-near-bataan-1600.webp 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/kamikaze-near-bataan.jpg" width="1920" height="1424" alt="A spray of water beside an aircraft carrier as a plane strikes the sea near her stern." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">A Japanese plane hits the water beside a light carrier, most probably USS Bataan, on April 17, 1945. Photographed from USS South Dakota. U.S. Navy 80-G-319252. Noble had finished her five days at the beach. The Okinawa campaign’s air attacks had not.</p>
@@ -480,7 +587,11 @@
           </figure>
           <figure class="print" data-tags="places" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/pearl-harbor-saratoga-1945.jpg" width="1920" height="1344" alt="A large aircraft carrier moored at a pier, with the harbor and low buildings beyond." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/pearl-harbor-saratoga-1945-960.avif 960w, images/sized/pearl-harbor-saratoga-1945-1600.avif 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/pearl-harbor-saratoga-1945-960.webp 960w, images/sized/pearl-harbor-saratoga-1945-1600.webp 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/pearl-harbor-saratoga-1945.jpg" width="1920" height="1344" alt="A large aircraft carrier moored at a pier, with the harbor and low buildings beyond." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">USS Saratoga at Ford Island, Pearl Harbor, about June 1945. U.S. Navy 80-G-K-14568. Pearl Harbor in the season Noble called there, between Okinawa and the June leave in San Francisco. Saratoga is not Noble.</p>
@@ -489,7 +600,11 @@
           </figure>
           <figure class="print" data-tags="places people">
             <button type="button" class="print-open">
-              <img src="images/seoul-1945.jpg" width="640" height="494" alt="A crowded market street, with people filling the road between low shopfronts." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/seoul-1945-640.avif 640w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/seoul-1945-640.webp 640w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/seoul-1945.jpg" width="640" height="494" alt="A crowded market street, with people filling the road between low shopfronts." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">A market street in Seoul on August 15, 1945, the day Koreans marked independence after forty years of Japanese rule. Australian War Memorial. This is the capital, not a photograph of Allied prisoners, and not evidence of which Korean port Noble used.</p>
@@ -498,7 +613,7 @@
           </figure>
           <figure class="print" data-tags="places" data-fit="contain">
             <button type="button" class="print-open">
-              <img src="images/inchon-harbor-1945.jpg" width="625" height="675" alt="A harbor seen from the air, with a causeway, small ships, and part of an airplane wing in the frame." loading="lazy">
+              <img src="images/inchon-harbor-1945.jpg" width="625" height="675" alt="A harbor seen from the air, with a causeway, small ships, and part of an airplane wing in the frame." loading="lazy" decoding="async">
             </button>
             <figcaption>
               <p class="cap">Jinsen, now Inchon, on September 8, 1945, photographed from a plane of USS Intrepid as occupation forces came ashore. U.S. Navy 80-G-348292. The cruise book says Korea and does not name the harbor. This is the occupation landing, not proof of Noble’s berth.</p>
@@ -507,7 +622,11 @@
           </figure>
           <figure class="print" data-tags="people" data-fit="contain">
             <button type="button" class="print-open">
-              <img src="images/aomori-pows-1945.jpg" width="1920" height="2757" alt="A group of thin men in mismatched clothes standing outdoors, some with an arm raised." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/aomori-pows-1945-960.avif 960w, images/sized/aomori-pows-1945-1600.avif 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/aomori-pows-1945-960.webp 960w, images/sized/aomori-pows-1945-1600.webp 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/aomori-pows-1945.jpg" width="1920" height="2757" alt="A group of thin men in mismatched clothes standing outdoors, some with an arm raised." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">Freed Allied prisoners at Aomori camp, near Yokohama, Japan, on August 29, 1945, as Navy rescuers reached them. U.S. Navy photograph. These men were in Japan, not Korea. They are not the prisoners Noble carried, and this is not the man remembered in the family’s story. A photograph of that embarkation was not found. This one is here only to show that liberation, in those weeks, was something sailors witnessed.</p>
@@ -516,7 +635,11 @@
           </figure>
           <figure class="print" data-tags="places" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/manila-intramuros-1945.jpg" width="1600" height="959" alt="Ruined stone walls and empty streets of a walled city, with little left standing." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/manila-intramuros-1945-960.avif 960w, images/sized/manila-intramuros-1945-1600.avif 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/manila-intramuros-1945-960.webp 960w, images/sized/manila-intramuros-1945-1600.webp 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/manila-intramuros-1945.jpg" width="1600" height="959" alt="Ruined stone walls and empty streets of a walled city, with little left standing." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">Intramuros, the walled city of Manila, in May 1945, after the battle. U.S. Army photograph, from the medical history of the war. Noble’s call with the freed prisoners was later, in the autumn. The picture shows the city as it stood that year, not Milton in it.</p>
@@ -525,7 +648,11 @@
           </figure>
           <figure class="print" data-tags="people places">
             <button type="button" class="print-open">
-              <img src="images/manila-sailor-1945.jpg" width="1920" height="1920" alt="A sailor in whites standing at a fruit stand, seen from the side." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/manila-sailor-1945-960.avif 960w, images/sized/manila-sailor-1945-1600.avif 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/manila-sailor-1945-960.webp 960w, images/sized/manila-sailor-1945-1600.webp 1600w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/manila-sailor-1945.jpg" width="1920" height="1920" alt="A sailor in whites standing at a fruit stand, seen from the side." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">A sailor on liberty at a fruit stand in Manila, May 1945. Victor Jorgensen, National Archives 520954. He is not Milton. Noble’s visit to Manila, with the freed prisoners and Admiral Kinkaid’s call, came months later.</p>
@@ -534,7 +661,11 @@
           </figure>
           <figure class="print" data-tags="places people" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/formosa-landing-party-1945.jpg" width="1920" height="1478" alt="Marines in a landing craft or on deck, with a mountainous coast behind them." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/formosa-landing-party-1945-960.avif 960w, images/sized/formosa-landing-party-1945-1600.avif 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/formosa-landing-party-1945-960.webp 960w, images/sized/formosa-landing-party-1945-1600.webp 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/formosa-landing-party-1945.jpg" width="1920" height="1478" alt="Marines in a landing craft or on deck, with a mountainous coast behind them." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">Marines preparing to go ashore on Formosa in September 1945. National Museum of the U.S. Navy, 127-GW-244-1. The museum says they had come from the carrier Block Island. This is a different event from Noble’s rescue of downed Army fliers offshore. The exact place of that rescue was not recorded.</p>
@@ -543,7 +674,11 @@
           </figure>
           <figure class="print" data-tags="places ship">
             <button type="button" class="print-open">
-              <img src="images/tsingtao-harbor-1945.jpg" width="907" height="696" alt="A destroyer moored in a harbor, with a larger warship across the water." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/tsingtao-harbor-1945-907.avif 907w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/tsingtao-harbor-1945-907.webp 907w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/tsingtao-harbor-1945.jpg" width="907" height="696" alt="A destroyer moored in a harbor, with a larger warship across the water." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">USS Stevens and the British cruiser HMS Bermuda at Tsingtao, September 22–27, 1945. Imperial War Museums A 30933, photographed by Sub-Lieutenant G. R. Godwin, Royal Navy. The harbor in the weeks before the October surrender. Neither ship is Noble.</p>
@@ -552,7 +687,11 @@
           </figure>
           <figure class="print" data-tags="places people" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/tsingtao-surrender.jpg" width="1920" height="1241" alt="Officers gathered outdoors around a table at a formal surrender, with swords laid on it." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/tsingtao-surrender-960.avif 960w, images/sized/tsingtao-surrender-1600.avif 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/tsingtao-surrender-960.webp 960w, images/sized/tsingtao-surrender-1600.webp 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/tsingtao-surrender.jpg" width="1920" height="1241" alt="Officers gathered outdoors around a table at a formal surrender, with swords laid on it." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">The Japanese surrender at Tsingtao in 1945. Swords are placed on the table. Major General Lemuel C. Shepherd Jr., commanding the 6th Marine Division, officiates with General Shen Pao Cheng for the Chinese government. Photographed by Connolly for the National Archives. Noble was present in the port for the surrender. She is not in the frame, and neither is Milton.</p>
@@ -561,7 +700,11 @@
           </figure>
           <figure class="print" data-tags="places people" data-span="wide">
             <button type="button" class="print-open">
-              <img src="images/seattle-homecoming.jpg" width="1920" height="1519" alt="A troopship alongside a city pier, with the Seattle waterfront behind her." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/seattle-homecoming-960.avif 960w, images/sized/seattle-homecoming-1600.avif 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/seattle-homecoming-960.webp 960w, images/sized/seattle-homecoming-1600.webp 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/seattle-homecoming.jpg" width="1920" height="1519" alt="A troopship alongside a city pier, with the Seattle waterfront behind her." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">The transport General M. C. Meigs coming into Seattle from the Pacific with troops, about 1945. Seattle Municipal Archives. Another ship’s homecoming, in the city where, on November 15, 1945, Noble detached a large part of her company. Not Noble, and not a picture of Milton going ashore.</p>
@@ -570,7 +713,11 @@
           </figure>
           <figure class="print" data-tags="ship" data-fit="contain">
             <button type="button" class="print-open">
-              <img src="images/medal-asiatic-pacific.jpg" width="900" height="1561" alt="The face of a round bronze medal showing a tropical shore and a landing under palm trees." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/medal-asiatic-pacific-900.avif 900w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/medal-asiatic-pacific-900.webp 900w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/medal-asiatic-pacific.jpg" width="900" height="1561" alt="The face of a round bronze medal showing a tropical shore and a landing under palm trees." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">The Asiatic-Pacific Campaign Medal. The photograph shows the medal alone, without a campaign star. Noble’s one battle star, for Okinawa Gunto, would have been worn on the ribbon. For Milton this medal is likely, and it is not confirmed. No award paper has been seen.</p>
@@ -579,7 +726,11 @@
           </figure>
           <figure class="print" data-tags="ship" data-fit="contain">
             <button type="button" class="print-open">
-              <img src="images/medal-american-campaign.jpg" width="1200" height="1132" alt="Front and back of a bronze medal, with a warship and an airplane on the face." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/medal-american-campaign-960.avif 960w, images/sized/medal-american-campaign-1200.avif 1200w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/medal-american-campaign-960.webp 960w, images/sized/medal-american-campaign-1200.webp 1200w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/medal-american-campaign.jpg" width="1200" height="1132" alt="Front and back of a bronze medal, with a warship and an airplane on the face." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">The American Campaign Medal, obverse and reverse. Service inside the American theater, including the time before a ship sailed west, was what this medal marked. For Milton it is likely, and it is not confirmed.</p>
@@ -588,7 +739,11 @@
           </figure>
           <figure class="print" data-tags="ship" data-fit="contain">
             <button type="button" class="print-open">
-              <img src="images/medal-victory.jpg" width="1200" height="1316" alt="Front and back of a bronze victory medal, Liberty on the face and a legend on the reverse." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/medal-victory-960.avif 960w, images/sized/medal-victory-1200.avif 1200w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/medal-victory-960.webp 960w, images/sized/medal-victory-1200.webp 1200w" sizes="(min-width: 860px) 24rem, calc(100vw - 2rem)">
+                <img src="images/medal-victory.jpg" width="1200" height="1316" alt="Front and back of a bronze victory medal, Liberty on the face and a legend on the reverse." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">The World War II Victory Medal, given for service in the war. Likely for Milton, like the other two, and not confirmed until his personnel file is read. This is a photograph of the medal, not of anything pinned on him.</p>
@@ -607,7 +762,11 @@
         <div class="album" id="family-album">
           <figure class="print" data-span="wide" data-fit="contain">
             <button type="button" class="print-open">
-              <img src="images/family-noble-print-1944.jpg" width="1600" height="1200" alt="The Nelson family’s framed 1944 line-art print of the attack transport USS Noble steaming through rough water under a cloudy sky, with hull number 218 on the bow. Stamped at the top: MILTON NELSON, COX. USS NOBLE. A caption on the water reads TOKYO SPECIAL ~ WORLD WAR II. The copyright line at the lower left reads Copyright 1944, Will Creasy. All rights reserved." loading="lazy">
+              <picture>
+                <source type="image/avif" srcset="images/sized/family-noble-print-1944-960.avif 960w, images/sized/family-noble-print-1944-1600.avif 1600w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <source type="image/webp" srcset="images/sized/family-noble-print-1944-960.webp 960w" sizes="(min-width: 860px) 48rem, calc(100vw - 2rem)">
+                <img src="images/family-noble-print-1944.jpg" width="1600" height="1200" alt="The Nelson family’s framed 1944 line-art print of the attack transport USS Noble steaming through rough water under a cloudy sky, with hull number 218 on the bow. Stamped at the top: MILTON NELSON, COX. USS NOBLE. A caption on the water reads TOKYO SPECIAL ~ WORLD WAR II. The copyright line at the lower left reads Copyright 1944, Will Creasy. All rights reserved." loading="lazy" decoding="async">
+              </picture>
             </button>
             <figcaption>
               <p class="cap">The Nelson family’s own print of the USS Noble, stamped “Milton Nelson, Cox., USS Noble.” “Tokyo Special – World War II,” © 1944 Will Creasy. Family collection.</p>
@@ -625,7 +784,7 @@
       </div>
     </section>
 
-    <section id="ship" class="section" style="background: rgba(255,255,255,0.35);">
+    <section id="ship" class="section band">
       <div class="wrap prose">
         <p class="kicker">07 — The ship</p>
         <h2>USS Noble (APA-218)</h2>
@@ -649,7 +808,7 @@
       </div>
     </section>
 
-    <section id="records" class="section" style="background: rgba(255,255,255,0.35);">
+    <section id="records" class="section band">
       <div class="wrap prose">
         <p class="kicker">09 — The file</p>
         <h2>How to request his records</h2>
@@ -702,8 +861,9 @@
     </div>
   </footer>
 
-  <dialog class="lightbox" id="lightbox" aria-labelledby="lb-caption">
-    <button type="button" id="lb-close">Close</button>
+  <dialog class="lightbox" id="lightbox" aria-labelledby="lb-title" closedby="any">
+    <h2 id="lb-title" class="visually-hidden">Photograph</h2>
+    <button type="button" id="lb-close" command="close" commandfor="lightbox" autofocus>Close</button>
     <div class="lb-frame">
       <button type="button" class="lb-nav" id="lb-prev" aria-label="Previous photograph">Prev</button>
       <img id="lb-img" alt="">
@@ -712,7 +872,7 @@
     </div>
   </dialog>
 
-  <script src="vendor/leaflet/leaflet.js"></script>
-  <script src="js/main.js"></script>
+  <script defer src="vendor/leaflet/leaflet.js"></script>
+  <script defer src="js/main.js"></script>
 </body>
 </html>

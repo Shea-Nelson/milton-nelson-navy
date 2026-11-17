@@ -14,10 +14,17 @@
         navToggle.setAttribute("aria-expanded", "false");
       });
     });
+    document.addEventListener("keydown", function (event) {
+      if (event.key !== "Escape" || !nav.classList.contains("is-open")) return;
+      if (dialog && dialog.open) return;
+      nav.classList.remove("is-open");
+      navToggle.setAttribute("aria-expanded", "false");
+      navToggle.focus();
+    });
   }
 
   var filters = document.querySelectorAll(".filters button");
-  var prints = Array.prototype.slice.call(document.querySelectorAll(".album .print"));
+  var prints = Array.prototype.slice.call(document.querySelectorAll("#album .print"));
   filters.forEach(function (button) {
     button.addEventListener("click", function () {
       var name = button.getAttribute("data-filter");
@@ -61,8 +68,17 @@
     var img = button.querySelector("img");
     var figure = button.closest("figure");
     var caption = figure ? figure.querySelector("figcaption") : null;
-    lbImg.src = img ? img.currentSrc || img.src : "";
-    lbImg.alt = img ? img.alt : "";
+    var title = document.getElementById("lb-title");
+    if (img) {
+      var w = img.getAttribute("width");
+      var h = img.getAttribute("height");
+      if (w) lbImg.setAttribute("width", w);
+      if (h) lbImg.setAttribute("height", h);
+      lbImg.alt = img.alt || "";
+      if (title) title.textContent = img.alt || "Photograph";
+      // The img src is the full photograph. currentSrc may be a smaller display file.
+      lbImg.src = img.getAttribute("src") || img.currentSrc || "";
+    }
     lbCaption.innerHTML = caption ? caption.innerHTML : "";
     if (!dialog.open) dialog.showModal();
   }
@@ -78,20 +94,26 @@
   function shut() {
     if (!dialog || !dialog.open) return;
     dialog.close();
-    lbImg.removeAttribute("src");
-    if (opener) opener.focus();
   }
 
   if (lbClose) lbClose.addEventListener("click", shut);
   if (lbPrev) lbPrev.addEventListener("click", function () { showAt(index - 1); });
   if (lbNext) lbNext.addEventListener("click", function () { showAt(index + 1); });
   if (dialog) {
-    dialog.addEventListener("cancel", function () {
+    dialog.addEventListener("close", function () {
       lbImg.removeAttribute("src");
     });
-    dialog.addEventListener("close", function () {
-      if (opener) opener.focus();
-    });
+    if (!("closedBy" in HTMLDialogElement.prototype)) {
+      var pressedOutside = false;
+      function outside(event) {
+        var rect = dialog.getBoundingClientRect();
+        return event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom;
+      }
+      dialog.addEventListener("pointerdown", function (event) { pressedOutside = outside(event); });
+      dialog.addEventListener("pointerup", function (event) {
+        if (pressedOutside && outside(event) && dialog.open) dialog.close();
+      });
+    }
     dialog.addEventListener("keydown", function (event) {
       if (event.key === "ArrowLeft") { event.preventDefault(); showAt(index - 1); }
       if (event.key === "ArrowRight") { event.preventDefault(); showAt(index + 1); }
@@ -106,11 +128,17 @@
       var on = item === stop;
       item.classList.toggle("is-active", on);
       var btn = item.querySelector(".stop-btn");
-      if (btn) btn.setAttribute("aria-current", on ? "true" : "false");
+      if (btn) {
+        if (on) btn.setAttribute("aria-current", "true");
+        else btn.removeAttribute("aria-current");
+      }
     });
     if (!stop) return;
-    if (pan && window.nelsonMapPin) window.nelsonMapPin(stop);
-    if (pan) stop.scrollIntoView({ block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
+    if (pan) {
+      if (!window.nelsonMapPin && window.nelsonMapEnsure) window.nelsonMapEnsure();
+      if (window.nelsonMapPin) window.nelsonMapPin(stop);
+      stop.scrollIntoView({ block: "nearest", behavior: reduceMotion ? "auto" : "smooth" });
+    }
   }
 
   stops.forEach(function (stop) {
@@ -219,14 +247,47 @@
       if (status) status.textContent = "Showing stop " + stop.getAttribute("data-num") + " on the map.";
     };
 
-    var hash = decodeURIComponent(location.hash || "");
-    var fromHash = hash ? document.querySelector(hash) : null;
-    if (fromHash && fromHash.classList.contains("stop")) setActive(fromHash, true);
+  }
+
+  function stopFromLocation() {
+    var raw = location.hash;
+    if (!raw || raw === "#") return null;
+    var id;
+    try { id = decodeURIComponent(raw.slice(1)); }
+    catch (err) { return null; }
+    if (!/^[A-Za-z][\w-]*$/.test(id)) return null;
+    var el = document.getElementById(id);
+    return el && el.classList.contains("stop") ? el : null;
+  }
+
+  var mapStarted = false;
+  function ensureMap() {
+    if (mapStarted) return;
+    mapStarted = true;
+    bootMap();
+  }
+  window.nelsonMapEnsure = ensureMap;
+
+  function bootWhenNear() {
+    var holder = document.getElementById("map");
+    var hashStop = stopFromLocation();
+    var openNow = !holder || hashStop || location.hash === "#voyage" || typeof IntersectionObserver === "undefined";
+    if (openNow) {
+      ensureMap();
+      if (hashStop) setActive(hashStop, true);
+      return;
+    }
+    var observer = new IntersectionObserver(function (entries) {
+      if (!entries.some(function (entry) { return entry.isIntersecting; })) return;
+      observer.disconnect();
+      ensureMap();
+    }, { rootMargin: "160px" });
+    observer.observe(holder);
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", bootMap);
+    document.addEventListener("DOMContentLoaded", bootWhenNear);
   } else {
-    bootMap();
+    bootWhenNear();
   }
 })();
